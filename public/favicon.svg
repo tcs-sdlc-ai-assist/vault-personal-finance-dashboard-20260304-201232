@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <!-- Vault Favicon: Brand blue, accent pink, luxe glass effect -->
+  <defs>
+    <linearGradient id="vault-gradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#F472B6"/>
+    </linearGradient>
+    <filter id="glass" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.15"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Outer circle (vault body) -->
+  <circle cx="32" cy="32" r="28" fill="url(#vault-gradient)" filter="url(#glass)" />
+  <!-- Inner circle (vault dial) -->
+  <circle cx="32" cy="32" r="16" fill="#fff" fill-opacity="0.85" />
+  <!-- Vault "V" mark (brand) -->
+  <path d="M22 26l10 16 10-16" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Vault dial ticks -->
+  <circle cx="32" cy="32" r="12" stroke="#F472B6" stroke-width="2" stroke-dasharray="2 8" fill="none"/>
+  <!-- Glass shine highlight -->
+  <ellipse cx="24" cy="20" rx="8" ry="3" fill="#fff" fill-opacity="0.18" />
+</svg>

@@ -1,0 +1,406 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font imports (ensure fallback for performance) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* CSS Variables for design tokens (colors, spacing, etc.) */
+:root {
+  /* Brand colors */
+  --color-brand: #3B82F6;
+  --color-brand-light: #60A5FA;
+  --color-brand-dark: #1E40AF;
+  --color-brand-accent: #F472B6;
+
+  /* Neutral palette */
+  --color-neutral-50: #F8FAFC;
+  --color-neutral-100: #F1F5F9;
+  --color-neutral-200: #E5E7EB;
+  --color-neutral-300: #CBD5E1;
+  --color-neutral-400: #94A3B8;
+  --color-neutral-500: #64748B;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1E293B;
+  --color-neutral-900: #0F172A;
+
+  /* Status colors */
+  --color-success: #22C55E;
+  --color-warning: #FACC15;
+  --color-error: #EF4444;
+  --color-info: #38BDF8;
+
+  /* Category colors */
+  --color-category-groceries: #F59E42;
+  --color-category-bills: #A78BFA;
+  --color-category-entertainment: #F472B6;
+  --color-category-travel: #38BDF8;
+  --color-category-health: #22C55E;
+  --color-category-savings: #FACC15;
+  --color-category-other: #64748B;
+
+  /* Gradients */
+  --gradient-blue-pink: linear-gradient(90deg, #3B82F6 0%, #F472B6 100%);
+  --gradient-green-yellow: linear-gradient(90deg, #22C55E 0%, #FACC15 100%);
+  --gradient-purple-orange: linear-gradient(90deg, #A78BFA 0%, #F59E42 100%);
+
+  /* Overlay/glassmorphism */
+  --color-overlay: rgba(16, 24, 40, 0.6);
+  --color-glass: rgba(255,255,255,0.7);
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Border radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Font families */
+  --font-sans: 'Inter', 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-heading: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+
+  /* Transition durations */
+  --transition-fast: 0.15s;
+  --transition-medium: 0.3s;
+  --transition-slow: 0.5s;
+}
+
+/* Dark mode overrides */
+.dark {
+  --color-brand: #60A5FA;
+  --color-neutral-50: #0F172A;
+  --color-neutral-900: #F8FAFC;
+  --color-overlay: rgba(248, 250, 252, 0.12);
+  --color-glass: rgba(16,24,40,0.7);
+}
+
+/* Base styles for html and body */
+html {
+  font-size: 16px;
+  font-family: var(--font-sans);
+  background-color: var(--color-neutral-50);
+  color: var(--color-neutral-700);
+  min-height: 100%;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background-color: var(--color-neutral-50);
+  color: var(--color-neutral-700);
+  background-image: url('/noise.svg');
+  background-repeat: repeat;
+  background-size: auto;
+  transition: background-color var(--transition-medium), color var(--transition-medium);
+}
+
+/* Dark mode body styles */
+.dark body {
+  background-color: var(--color-neutral-900);
+  color: var(--color-neutral-50);
+}
+
+/* Responsive font smoothing */
+html, body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove default outline, use custom focus ring */
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-brand);
+}
+
+/* Custom scrollbar for modern browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--color-neutral-100);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-300);
+  border-radius: var(--radius-full);
+}
+.dark ::-webkit-scrollbar {
+  background: var(--color-neutral-800);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-600);
+}
+
+/* Selection color */
+::selection {
+  background: var(--color-brand-light);
+  color: var(--color-neutral-50);
+}
+.dark ::selection {
+  background: var(--color-brand-dark);
+  color: var(--color-neutral-900);
+}
+
+/* Utility: glassmorphism effect */
+.glass {
+  background: var(--color-glass);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 32px 0 rgba(16, 24, 40, 0.12);
+}
+
+/* Utility: overlay effect */
+.overlay {
+  background: var(--color-overlay);
+  backdrop-filter: blur(2px);
+}
+
+/* Utility: gradient backgrounds */
+.bg-gradient-blue-pink {
+  background: var(--gradient-blue-pink);
+}
+.bg-gradient-green-yellow {
+  background: var(--gradient-green-yellow);
+}
+.bg-gradient-purple-orange {
+  background: var(--gradient-purple-orange);
+}
+
+/* Utility: animated fade-in */
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Utility: animated slide-up */
+.slide-up {
+  animation: slideUp 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes slideUp {
+  0% { transform: translateY(24px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Utility: animated pulse */
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Utility: animated wiggle */
+.wiggle {
+  animation: wiggle 0.5s ease-in-out infinite;
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+/* Card, modal, and widget shadows */
+.card-shadow {
+  box-shadow: 0 4px 8px 0 rgba(16, 24, 40, 0.10);
+}
+.modal-shadow {
+  box-shadow: 0 16px 32px 0 rgba(16, 24, 40, 0.18);
+}
+.glass-shadow {
+  box-shadow: 0 4px 32px 0 rgba(16, 24, 40, 0.12);
+}
+
+/* Utility: visually hidden for accessibility */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* Utility: responsive container */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+  max-width: 1280px;
+}
+
+/* Utility: badge styles */
+.badge {
+  display: inline-block;
+  padding: 0 var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: var(--color-neutral-200);
+  color: var(--color-neutral-700);
+}
+.dark .badge {
+  background: var(--color-neutral-700);
+  color: var(--color-neutral-50);
+}
+
+/* Utility: skeleton loading */
+.skeleton {
+  background: var(--color-neutral-200);
+  border-radius: var(--radius-md);
+  animation: pulse 1.5s infinite;
+}
+.dark .skeleton {
+  background: var(--color-neutral-700);
+}
+
+/* Utility: toast styles */
+.toast {
+  background: var(--color-glass);
+  color: var(--color-neutral-900);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px 0 rgba(16, 24, 40, 0.15);
+  padding: var(--space-md) var(--space-lg);
+  font-size: 1rem;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+}
+.dark .toast {
+  background: var(--color-overlay);
+  color: var(--color-neutral-50);
+}
+
+/* Utility: progress bar styles */
+.progress-bar {
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-200);
+  overflow: hidden;
+}
+.dark .progress-bar {
+  background: var(--color-neutral-700);
+}
+
+/* Utility: animated number styles */
+.animated-number {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-brand);
+}
+.dark .animated-number {
+  color: var(--color-brand-light);
+}
+
+/* Utility: visually distinct empty state */
+.empty-state {
+  text-align: center;
+  color: var(--color-neutral-400);
+  font-size: 1.125rem;
+  margin: var(--space-lg) 0;
+}
+.dark .empty-state {
+  color: var(--color-neutral-500);
+}
+
+/* Utility: confirm dialog overlay */
+.confirm-dialog-overlay {
+  background: var(--color-overlay);
+  backdrop-filter: blur(4px);
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+}
+
+/* Utility: tooltip styles */
+.tooltip {
+  background: var(--color-neutral-900);
+  color: var(--color-neutral-50);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  box-shadow: 0 1px 2px 0 rgba(16, 24, 40, 0.05);
+}
+.dark .tooltip {
+  background: var(--color-neutral-50);
+  color: var(--color-neutral-900);
+}
+
+/* Utility: visually distinct percentage badge */
+.percentage-badge {
+  display: inline-block;
+  padding: 0 var(--space-xs);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--color-success);
+  color: var(--color-neutral-50);
+}
+.dark .percentage-badge {
+  background: var(--color-success);
+  color: var(--color-neutral-900);
+}
+
+/* Utility: currency display */
+.currency-display {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-brand);
+}
+.dark .currency-display {
+  color: var(--color-brand-light);
+}
+
+/* Utility: date display */
+.date-display {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-neutral-500);
+}
+.dark .date-display {
+  color: var(--color-neutral-300);
+}
+
+/* Utility: visually distinct card */
+.card {
+  background: var(--color-glass);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 8px 0 rgba(16, 24, 40, 0.10);
+  padding: var(--space-lg);
+}
+.dark .card {
+  background: var(--color-overlay);
+  box-shadow: 0 8px 24px 0 rgba(16, 24, 40, 0.15);
+}
+
+/* Utility: visually distinct badge for category/status */
+.category-badge {
+  display: inline-block;
+  padding: 0 var(--space-xs);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.category-badge.groceries { background: var(--color-category-groceries); color: #fff; }
+.category-badge.bills { background: var(--color-category-bills); color: #fff; }
+.category-badge.entertainment { background: var(--color-category-entertainment); color: #fff; }
+.category-badge.travel { background: var(--color-category-travel); color: #fff; }
+.category-badge.health { background: var(--color-category-health); color: #fff; }
+.category-badge.savings { background: var(--color-category-savings); color: #fff; }
+.category-badge.other { background: var(--color-category-other); color: #fff; }
+.dark .category-badge { color: var(--color-neutral-900); }
+
+/* End of global CSS */
